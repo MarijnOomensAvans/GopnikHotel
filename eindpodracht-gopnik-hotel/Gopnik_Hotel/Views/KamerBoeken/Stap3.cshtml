@@ -1,0 +1,119 @@
+﻿@model Gopnik_Hotel.ViewModels.KamerViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewBag.Title = "Stap3";
+}
+
+<br />
+<img class="card-img-top" src="https://i.imgur.com/GAUKdOs.png" alt="Stap image">
+
+<div class="row">
+    <div class="container">
+        @using (Html.BeginForm("Bevestigen", "KamerBoeken", FormMethod.Post))
+        {
+        <div class="jumbotron col-md-6">
+            <h3>Kies een datum en het aantal personen</h3>
+            <p>Datum Boeking</p>
+            <p><b>@ViewBag.Date</b></p>
+            <div class="form-group">
+                <p>Aantal personen</p>
+                <p><b>@ViewBag.Amount</b></p>
+            </div>
+            <hr />
+            @foreach (var klant in ViewBag.Klant)
+            {
+                <h3><b>@klant.Naam</b></h3>
+                <p>Woonplaats</p>
+                <p><b>@klant.Woonplaats</b></p>
+                <p>Postcode</p>
+                <p><b>@klant.Postcode</b></p>
+                <p>Straatnaam</p>
+                <p><b>@klant.Straat</b></p>
+                <p>Huisnummer</p>
+                <p><b>@klant.Huisnummer</b></p>
+                <p>Email</p>
+                if (klant.Mail != null)
+                {
+                    <p><b>@klant.Mail</b></p>
+                }
+                else
+                {
+                    <p><b>Geen email ingevoerd</b></p>
+                }
+
+                <hr />
+                            }
+            <p>Korting: </p>
+            <p>Prijs:  @Html.DisplayFor(model => model.Prijs) met @ViewBag.Korting % korting!</p>
+            <p>Totaalprijs: @ViewBag.Totaalprijs</p>
+
+            <input type="text" value="@ViewBag.Klant" name="klanten" hidden />
+            <input type="text" value="@ViewBag.Date" name="date" hidden />
+
+            <input type="submit" value="Bevestigen" class="btn btn-primary" />
+        </div>
+        }
+            <div class="jumbotron text-center col-md-6">
+                <h4>Kamer</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Naam)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Naam)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Grootte)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Grootte)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Prijs)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Prijs)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Afbeelding)
+                    </dt>
+
+                    <dd>
+                        <img src="@Model.Afbeelding" alt="Kamer afbeelding" height="142" width="226">
+                    </dd>
+
+                </dl>
+
+                <hr />
+
+
+                @if (Model.Boekingen != null)
+                {
+                    <h3>Boekingen voor deze kamer</h3>
+                    foreach (var b in Model.Boekingen)
+                    {
+                        <dl class="dl-horizontal">
+                            <dt>
+                                <p>Datum</p>
+                            </dt>
+                            <dd>
+                                <p>@b.Datum.ToString("dd/MM/yyyy")</p>
+                            </dd>
+                        </dl>
+
+                        <hr />
+                    }
+                }
+            </div>
+    </div>
+</div>

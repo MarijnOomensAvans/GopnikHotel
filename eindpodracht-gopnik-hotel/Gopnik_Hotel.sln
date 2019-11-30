@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.329
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gopnik_Hotel", "Gopnik_Hotel\Gopnik_Hotel.csproj", "{7845598F-3F9D-4F29-BD27-5E220D9102E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gopnik_Hotel.Tests", "Gopnik_Hotel.Tests\Gopnik_Hotel.Tests.csproj", "{2E42BE87-6BC5-4592-9D63-8FE6567BC4D9}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "GopnikHotelDB", "GopnikHotelDB\GopnikHotelDB.sqlproj", "{A5C30A47-0618-41C2-A98D-45F59805DA4D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7845598F-3F9D-4F29-BD27-5E220D9102E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7845598F-3F9D-4F29-BD27-5E220D9102E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7845598F-3F9D-4F29-BD27-5E220D9102E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7845598F-3F9D-4F29-BD27-5E220D9102E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E42BE87-6BC5-4592-9D63-8FE6567BC4D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E42BE87-6BC5-4592-9D63-8FE6567BC4D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E42BE87-6BC5-4592-9D63-8FE6567BC4D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E42BE87-6BC5-4592-9D63-8FE6567BC4D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5C30A47-0618-41C2-A98D-45F59805DA4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5C30A47-0618-41C2-A98D-45F59805DA4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5C30A47-0618-41C2-A98D-45F59805DA4D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{A5C30A47-0618-41C2-A98D-45F59805DA4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5C30A47-0618-41C2-A98D-45F59805DA4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5C30A47-0618-41C2-A98D-45F59805DA4D}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {294D9A63-ACE7-48CE-9F56-1BAF41A9405D}
+	EndGlobalSection
+EndGlobal

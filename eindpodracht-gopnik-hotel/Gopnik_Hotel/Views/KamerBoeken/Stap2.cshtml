@@ -1,0 +1,115 @@
+﻿@model Gopnik_Hotel.ViewModels.KamerViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewBag.Title = "Stap2";
+}
+
+@{
+    var amount = ViewBag.Amount;
+}
+
+<br />
+<img class="card-img-top" src="https://i.imgur.com/D67nzyP.png" alt="Stap image">
+
+<div class="row">
+    <div class="container">
+        @using (Html.BeginForm("Next2", "KamerBoeken", FormMethod.Post))
+        {
+            <div class="jumbotron col-md-6">
+                <form action="/KamerBoeken/Stap3" method="post">
+                    <h3>Kies een datum en het aantal personen</h3>
+                    <p>Datum Boeking</p>
+                    <p><b>@ViewBag.Date.ToString("dd/MM/yyyy")</b></p>
+                    <div class="form-group">
+                        <p>Aantal personen</p>
+                        <p><b>@amount</b></p>
+                    </div>
+                    <hr />
+                    @for (int i = 1; i < @amount + 1; i++)
+                    {
+                        <h3> Persoon @i</h3>
+                        <p>Naam*</p>
+                        <input type="text" name="naam@(i)" class="form-control" placeholder="Naam" aria-label="Naam" aria-describedby="basic-addon1" max="255" required>
+                        <p>Woonplaats*</p>
+                        <input type="text" name="woonplaats@(i)" class="form-control" placeholder="Woonplaats" aria-label="Woonplaats" aria-describedby="basic-addon1" max="255" required>
+                        <p>Postcode*</p>
+                        <input type="text" name="postcode@(i)" class="form-control" placeholder="Postcode" aria-label="Postcode" aria-describedby="basic-addon1" max="255" required>
+                        <p>Straatnaam*</p>
+                        <input type="text" name="straatnaam@(i)" class="form-control" placeholder="Straatnaam" aria-label="Straatnaam" aria-describedby="basic-addon1" max="255" required>
+                        <p>Huisnummer*</p>
+                        <input type="number" name="huisnummer@(i)" class="form-control" placeholder="Huisnummer" aria-label="Huisnummer" aria-describedby="basic-addon1" min="1" max="99" required>
+                        <p>Email</p>
+                        <input type="email" name="email@(i)" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1">
+                        <br />
+                        <input type="text" value="@ViewBag.Date" name="Date" hidden />
+                        <input type="text" value="@amount" name="Amount" hidden />
+                        <hr />
+                    }
+                    <input type="submit" value="Next" name="Next" class="btn btn-primary"/>
+                </form>
+            </div>
+        }
+            <div class="jumbotron text-center col-md-6">
+                <h4>Kamer</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Naam)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Naam)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Grootte)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Grootte)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Prijs)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Prijs)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Afbeelding)
+                    </dt>
+
+                    <dd>
+                        <img src="@Model.Afbeelding" alt="Kamer afbeelding" height="142" width="226">
+                    </dd>
+
+                </dl>
+
+                <hr />
+
+
+                @if (Model.Boekingen != null)
+                {
+                    <h3>Boekingen voor deze kamer</h3>
+                    foreach (var b in Model.Boekingen)
+                    {
+                        <dl class="dl-horizontal">
+                            <dt>
+                                <p>Datum</p>
+                            </dt>
+                            <dd>
+                                <p>@b.Datum.ToString("dd/MM/yyyy")</p>
+                            </dd>
+                        </dl>
+
+                        <hr />
+                    }
+                }
+            </div>
+    </div>
+</div>

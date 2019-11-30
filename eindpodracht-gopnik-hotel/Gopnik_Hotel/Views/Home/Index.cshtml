@@ -1,0 +1,28 @@
+﻿@model List<Gopnik_Hotel.ViewModels.KamerViewModel>
+@{
+    ViewBag.Title = "Hotel Gopnik";
+}
+
+<div class="jumbotron">
+    <h1>Welkom bij <b>Hotel Gopnik</b></h1>
+    <p class="lead">Een nacht bij ons hotel zult u niet snel vergeten!</p>
+    <a href="KamerOverzicht/index" class="btn btn-primary">Boek nu snel een kamer!</a>
+</div>
+
+<h2>Aanbevolen Kamers</h2>
+
+<div class="row">
+    @foreach (var k in Model)
+    {
+        <div class="col-md-3">
+            <div class="well">
+                <img class="card-img-top" src="@k.Afbeelding" alt="Card image" height="142" width="226">
+                <div class="card-body">
+                    <h4 class="card-title">@k.Naam</h4>
+                    <p class="card-text">₽ @k.Prijs</p>
+                    @Html.ActionLink("Boek nu!", "Index", "KamerBoeken", new { kamerID = k.KamerId }, new { @class = "btn btn-primary" })
+                </div>
+            </div>
+        </div>
+    }
+</div>

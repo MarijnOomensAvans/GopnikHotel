@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Gopnik_Hotel.ViewModels.BoekingViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BoekingId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Datum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Kamer.Naam)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Klant.Naam)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BoekingId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Datum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Kamer.Naam)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Klant.Naam)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.BoekingId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.BoekingId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.BoekingId })
+        </td>
+    </tr>
+}
+
+</table>

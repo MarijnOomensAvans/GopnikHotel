@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Gopnik_Hotel.ViewModels.KamerViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Naam)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Grootte)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Prijs)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Afbeelding)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Naam)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Grootte)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Prijs)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Afbeelding)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.KamerId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.KamerId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.KamerId })
+        </td>
+    </tr>
+}
+
+</table>

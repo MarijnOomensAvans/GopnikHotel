@@ -1,0 +1,79 @@
+﻿@model Gopnik_Hotel.ViewModels.KamerViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Kamer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Naam)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Naam)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Grootte)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Grootte)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prijs)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prijs)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Afbeelding)
+        </dt>
+
+        <dd>
+            <img src="@Model.Afbeelding" alt="Kamer afbeelding" height="142" width="226">
+        </dd>
+
+    </dl>
+
+    <hr />
+
+
+    @if (Model.Boekingen != null)
+    {
+        <h3>Boekingen voor deze kamer</h3>
+        foreach (var b in Model.Boekingen)
+        {
+            <dl class="dl-horizontal">
+                <dt>
+                    <p>Datum</p>
+                </dt>
+                <dd>
+                    <p>@b.Datum.ToString("dd/MM/yyyy")</p>
+                </dd>
+
+                <dt>
+                    <p>Klant</p>
+                </dt>
+                <dd>
+                    <p>@b.Klant.Naam</p>
+                </dd>
+            </dl>
+        }
+    }
+
+
+
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.KamerId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GopnikHotelDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Boeking">
+          <Key>
+            <PropertyRef Name="BoekingId" />
+            <PropertyRef Name="IdKamer" />
+            <PropertyRef Name="IdKlant" />
+          </Key>
+          <Property Name="BoekingId" Type="int" Nullable="false" />
+          <Property Name="Datum" Type="date" Nullable="false" />
+          <Property Name="IdKamer" Type="int" Nullable="false" />
+          <Property Name="IdKlant" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kamer">
+          <Key>
+            <PropertyRef Name="KamerId" />
+          </Key>
+          <Property Name="KamerId" Type="int" Nullable="false" />
+          <Property Name="Naam" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Grootte" Type="int" Nullable="false" />
+          <Property Name="Prijs" Type="money" Nullable="false" />
+          <Property Name="Afbeelding" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Klant">
+          <Key>
+            <PropertyRef Name="KlantId" />
+          </Key>
+          <Property Name="KlantId" Type="int" Nullable="false" />
+          <Property Name="Naam" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Mail" Type="varchar" MaxLength="255" />
+          <Property Name="Postcode" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="Woonplaats" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Straat" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Huisnummer" Type="int" Nullable="false" />
+          <Property Name="Toevoeging" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <Association Name="FK_Boeking_ToTable">
+          <End Role="Kamer" Type="Self.Kamer" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Boeking" Type="Self.Boeking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kamer">
+              <PropertyRef Name="KamerId" />
+            </Principal>
+            <Dependent Role="Boeking">
+              <PropertyRef Name="IdKamer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Boeking_ToTable_1">
+          <End Role="Klant" Type="Self.Klant" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Boeking" Type="Self.Boeking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klant">
+              <PropertyRef Name="KlantId" />
+            </Principal>
+            <Dependent Role="Boeking">
+              <PropertyRef Name="IdKlant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GopnikHotelDBModelStoreContainer">
+          <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Boeking" EntityType="Self.Boeking" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kamer" EntityType="Self.Kamer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Klant" EntityType="Self.Klant" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Boeking_ToTable" Association="Self.FK_Boeking_ToTable">
+            <End Role="Kamer" EntitySet="Kamer" />
+            <End Role="Boeking" EntitySet="Boeking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Boeking_ToTable_1" Association="Self.FK_Boeking_ToTable_1">
+            <End Role="Klant" EntitySet="Klant" />
+            <End Role="Boeking" EntitySet="Boeking" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GopnikHotelDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Boeking">
+          <Key>
+            <PropertyRef Name="BoekingId" />
+            <PropertyRef Name="IdKamer" />
+            <PropertyRef Name="IdKlant" />
+          </Key>
+          <Property Name="BoekingId" Type="Int32" Nullable="false" />
+          <Property Name="Datum" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IdKamer" Type="Int32" Nullable="false" />
+          <Property Name="IdKlant" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Kamer" Relationship="Self.FK_Boeking_ToTable" FromRole="Boeking" ToRole="Kamer" />
+          <NavigationProperty Name="Klant" Relationship="Self.FK_Boeking_ToTable_1" FromRole="Boeking" ToRole="Klant" />
+        </EntityType>
+        <EntityType Name="Kamer">
+          <Key>
+            <PropertyRef Name="KamerId" />
+          </Key>
+          <Property Name="KamerId" Type="Int32" Nullable="false" />
+          <Property Name="Naam" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Grootte" Type="Int32" Nullable="false" />
+          <Property Name="Prijs" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Afbeelding" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Boekings" Relationship="Self.FK_Boeking_ToTable" FromRole="Kamer" ToRole="Boeking" />
+        </EntityType>
+        <EntityType Name="Klant">
+          <Key>
+            <PropertyRef Name="KlantId" />
+          </Key>
+          <Property Name="KlantId" Type="Int32" Nullable="false" />
+          <Property Name="Naam" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Mail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Postcode" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Woonplaats" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Straat" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Huisnummer" Type="Int32" Nullable="false" />
+          <Property Name="Toevoeging" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Boekings" Relationship="Self.FK_Boeking_ToTable_1" FromRole="Klant" ToRole="Boeking" />
+        </EntityType>
+        <Association Name="FK_Boeking_ToTable">
+          <End Role="Kamer" Type="Self.Kamer" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Boeking" Type="Self.Boeking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kamer">
+              <PropertyRef Name="KamerId" />
+            </Principal>
+            <Dependent Role="Boeking">
+              <PropertyRef Name="IdKamer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Boeking_ToTable_1">
+          <End Role="Klant" Type="Self.Klant" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Boeking" Type="Self.Boeking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klant">
+              <PropertyRef Name="KlantId" />
+            </Principal>
+            <Dependent Role="Boeking">
+              <PropertyRef Name="IdKlant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GopnikHotelDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__RefactorLog" EntityType="Self.C__RefactorLog" />
+          <EntitySet Name="Boekings" EntityType="Self.Boeking" />
+          <EntitySet Name="Kamers" EntityType="Self.Kamer" />
+          <EntitySet Name="Klants" EntityType="Self.Klant" />
+          <AssociationSet Name="FK_Boeking_ToTable" Association="Self.FK_Boeking_ToTable">
+            <End Role="Kamer" EntitySet="Kamers" />
+            <End Role="Boeking" EntitySet="Boekings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Boeking_ToTable_1" Association="Self.FK_Boeking_ToTable_1">
+            <End Role="Klant" EntitySet="Klants" />
+            <End Role="Boeking" EntitySet="Boekings" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GopnikHotelDBModelStoreContainer" CdmEntityContainer="GopnikHotelDBEntities">
+          <EntitySetMapping Name="C__RefactorLog">
+            <EntityTypeMapping TypeName="GopnikHotelDBModel.C__RefactorLog">
+              <MappingFragment StoreEntitySet="__RefactorLog">
+                <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Boekings">
+            <EntityTypeMapping TypeName="GopnikHotelDBModel.Boeking">
+              <MappingFragment StoreEntitySet="Boeking">
+                <ScalarProperty Name="BoekingId" ColumnName="BoekingId" />
+                <ScalarProperty Name="Datum" ColumnName="Datum" />
+                <ScalarProperty Name="IdKamer" ColumnName="IdKamer" />
+                <ScalarProperty Name="IdKlant" ColumnName="IdKlant" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kamers">
+            <EntityTypeMapping TypeName="GopnikHotelDBModel.Kamer">
+              <MappingFragment StoreEntitySet="Kamer">
+                <ScalarProperty Name="KamerId" ColumnName="KamerId" />
+                <ScalarProperty Name="Naam" ColumnName="Naam" />
+                <ScalarProperty Name="Grootte" ColumnName="Grootte" />
+                <ScalarProperty Name="Prijs" ColumnName="Prijs" />
+                <ScalarProperty Name="Afbeelding" ColumnName="Afbeelding" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Klants">
+            <EntityTypeMapping TypeName="GopnikHotelDBModel.Klant">
+              <MappingFragment StoreEntitySet="Klant">
+                <ScalarProperty Name="KlantId" ColumnName="KlantId" />
+                <ScalarProperty Name="Naam" ColumnName="Naam" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+                <ScalarProperty Name="Woonplaats" ColumnName="Woonplaats" />
+                <ScalarProperty Name="Straat" ColumnName="Straat" />
+                <ScalarProperty Name="Huisnummer" ColumnName="Huisnummer" />
+                <ScalarProperty Name="Toevoeging" ColumnName="Toevoeging" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
